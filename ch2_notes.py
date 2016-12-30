@@ -1,6 +1,6 @@
 import nsfg, first, thinkstats2, thinkplot
 
-def create_basic_histo(hist):
+def create_basic_hist(hist):
     # create a histogram of number of weeks of pregnancy
     hist = thinkstats2.Hist(live.prglngth, label='Pregnancy Length')
 
@@ -21,7 +21,7 @@ def observe_outliers(hist):
         largest.append(weeks)
     print(sorted(largest))
 
-def create_comparison_histo(firsts, others):
+def create_comparison_hist(firsts, others):
     # create histograms
     first_hist = thinkstats2.Hist(firsts.prglngth)
     others_hist = thinkstats2.Hist(others.prglngth)
@@ -35,6 +35,19 @@ def create_comparison_histo(firsts, others):
     # display histogram focusing on pregnancies between 27 and 46 weeks
     thinkplot.Show(xlabel='weeks', ylabel='frequency', xlim=[27,46])
 
+def summary_statistics(hist):
+    # uses pandas to calc mean
+    mean = hist.prglngth.mean()
+    print("Mean: " + str(mean))
+
+    # use pandas to calc variance (deviation from the mean squared)
+    var = hist.prglngth.var()
+    print("Variance: " + str(var))
+
+    # use pandas to calc standard deviation (square root of variance)
+    std = hist.prglngth.std()
+    print("Standard deviation: " + str(std))
+
 def main(script):
     # read in data into dataframe
     preg = nsfg.ReadFemPreg()
@@ -43,7 +56,7 @@ def main(script):
     live = preg[preg.outcome == 1]
 
     # display histogram
-    # create_basic_histo(hist)
+    # create_basic_hist(hist)
 
     # print outliers
     # observe_outliers(hist)
@@ -54,7 +67,10 @@ def main(script):
     others = live[live.birthord != 1]
 
     # plot both these dataframes in one histogram graph
-    create_comparison_histo(firsts, others)
+    # create_comparison_hist(firsts, others)
+
+    # print pregnancy length summary statistics
+    # summary_statistics(live)
 
 
 if __name__ == '__main__':
