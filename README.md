@@ -1,4 +1,4 @@
-### Think Stats by Allen B. Downey
+## Think Stats by Allen B. Downey
 
 [Think Stats, 2nd Edition](http://greenteapress.com/thinkstats2/index.html)
 
@@ -6,7 +6,7 @@
 
 "If you have never studied statistics, I think this book is a good place to start. And if you have taken a traditional statistics class, I hope this book will help repair the damage."
 
-#### Chapter 1
+## Chapter 1
 
 ### pandas
 
@@ -14,7 +14,7 @@
 
   - series is like a Python list with additional features
 
-#### Chapter 2
+## Chapter 2
 
 ### distribution
 
