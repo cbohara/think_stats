@@ -68,3 +68,29 @@
     - advantageous over histogram when comparing two distributions
 
     - allows us not to be mislead by the sample size
+
+### pandas
+
+  - df = pd.DataFrame(array, index=['a', 'b', 'c', 'd'], columns=['A', 'B'])
+
+    - index == rows
+
+  - simple indexing selects a column and returns series
+
+    - df['A']
+
+  - loc selects row by label
+
+    - df.loc['a'] returns series
+
+    - df.loc['a', 'b'] returns dataframe
+
+  - iloc selects row by integer index and returns series
+
+    - df.iloc[0]
+
+  - slice to select a range of rows
+
+    - df['a':'c']
+
+    - df[0:2]

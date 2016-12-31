@@ -1,4 +1,5 @@
-import math, nsfg, first, thinkstats2, thinkplot, probability
+import math, numpy as np, pandas as pd
+import thinkstats2, thinkplot, nsfg, first, probability
 
 def create_hist(df):
     # create a histogram of number of weeks of pregnancy
@@ -90,7 +91,15 @@ def main(script):
     biased_pmf = bias_pmf(pmf, label='observed')
     thinkplot.PrePlot(2)
     thinkplot.Pmfs([pmf, biased_pmf])
-    thinkplot.Show(xlabel='class size', ylabel='PMF')
+    # thinkplot.Show(xlabel='class size', ylabel='PMF')
+
+    # dataframe
+    array = np.random.randn(4, 2)
+    df = pd.DataFrame(array, index=['a', 'b', 'c', 'd'], columns=['A', 'B'])
+    print(df)
+    # simple indexing selects a column and returns a series
+    print(df['A'])
+    # use .loc to select a 
 
 if __name__ == '__main__':
     import sys
