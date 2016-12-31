@@ -1,4 +1,4 @@
-## Think Stats by Allen B. Downey
+# Think Stats by Allen B. Downey
 
 [Think Stats, 2nd Edition](http://greenteapress.com/thinkstats2/index.html)
 
@@ -60,6 +60,6 @@
 
 ### probability
 
-  - probability: frequency / sample size
+  - probability = frequency / sample size
 
   - normalization: the process of dividing frequency by sample size to get probability
