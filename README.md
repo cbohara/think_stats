@@ -10,9 +10,9 @@
 
 ### pandas
 
-  - dataframe contains a row for each record and a column for each variable
+  - dataframe: a row for each record and a column for each variable
 
-  - series is like a Python list with additional features
+  - series: like a Python list with additional features
 
 ## Chapter 2
 
@@ -57,3 +57,9 @@
   - outliers
 
     - are there extreme values far from the modes?
+
+## Chapter 3
+
+### probability
+
+  - probability
