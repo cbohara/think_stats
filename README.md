@@ -6,13 +6,8 @@
 
 "If you have never studied statistics, I think this book is a good place to start. And if you have taken a traditional statistics class, I hope this book will help repair the damage."
 
-## Chapter 1
 
-### pandas
 
-  - dataframe: a row for each record and a column for each variable
-
-  - series: like a Python list with additional features
 
 ## Chapter 2
 

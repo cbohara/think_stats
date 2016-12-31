@@ -25,7 +25,7 @@ def display(pmf1, pmf2):
     thinkplot.PrePlot(2)
     thinkplot.SubPlot(2)
     thinkplot.Pmfs([pmf1, pmf2])
-    thinkplot.Show(xlabel='weeks', axis=[27, 46, 0, 0.6])
+    return thinkplot.Show(xlabel='weeks', axis=[27, 46, 0, 0.6])
 
 def zoom_in_around_mode(pmf1, pmf2):
     weeks = range(35, 46)
@@ -37,7 +37,27 @@ def zoom_in_around_mode(pmf1, pmf2):
         diffs.append(diff)
 
     thinkplot.Bar(weeks, diffs)
-    thinkplot.Show(xlabel='weeks', ylabel='difference in probability')
+    return thinkplot.Show(xlabel='weeks', ylabel='difference in probability')
+
+def bias_pmf(pmf, label):
+    new_pmf = pmf.Copy(label=label)
+    # for each class size
+    for x, p in pmf.Items():
+        # multiply the probability by the number of students who observe the class size
+        new_pmf.Mult(x, x)
+
+    new_pmf.Normalize()
+    return new_pmf
+
+def unbiased_pmf(pmf, label):
+    new_pmf = pmf.Copy(label=label)
+    # for each class size
+    for x, p in pmf.Items():
+        # divides each probability by the number of students who observe the class size
+        new_pmf.Mult(x, 1.0/x)
+
+    new_pmf.Normalize()
+    return new_pmf
 
 def main(script):
     # read in data into dataframe
@@ -59,8 +79,18 @@ def main(script):
     # display graphs of probabilities
     # display(firsts_pmf, others_pmf)
     # zoom in around mode to get a better idea of data pattern
-    zoom_in_around_mode(firsts_pmf, others_pmf)
+    # zoom_in_around_mode(firsts_pmf, others_pmf)
 
+    # class size paradox
+    # dictionary of avg class size: frequency of classes offered
+    d = {7: 8, 12: 8, 17: 14, 22: 4, 27: 6, 32: 12, 37: 8, 42: 3, 47: 2}
+    # create pmf
+    pmf = thinkstats2.Pmf(d, label='actual')
+    # observe biased distribution
+    biased_pmf = bias_pmf(pmf, label='observed')
+    thinkplot.PrePlot(2)
+    thinkplot.Pmfs([pmf, biased_pmf])
+    thinkplot.Show(xlabel='class size', ylabel='PMF')
 
 if __name__ == '__main__':
     import sys
