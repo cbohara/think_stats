@@ -25,7 +25,7 @@ def display(pmf1, pmf2):
     thinkplot.PrePlot(2)
     thinkplot.SubPlot(2)
     thinkplot.Pmfs([pmf1, pmf2])
-    return thinkplot.Show(xlabel='weeks', axis=[27, 46, 0, 0.6])
+    thinkplot.Show(xlabel='weeks', axis=[27, 46, 0, 0.6])
 
 def zoom_in_around_mode(pmf1, pmf2):
     weeks = range(35, 46)
@@ -36,7 +36,8 @@ def zoom_in_around_mode(pmf1, pmf2):
         diff = 100 * (p1 - p2)
         diffs.append(diff)
 
-    return thinkplot.Bar(weeks, diffs)
+    thinkplot.Bar(weeks, diffs)
+    thinkplot.Show(xlabel='weeks', ylabel='difference in probability')
 
 def main(script):
     # read in data into dataframe
