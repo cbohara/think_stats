@@ -26,6 +26,8 @@
 
   - uniform distribution: all values have the same frequency
 
+  - can be observed with a histogram
+
 ### summarizing distribution
 
   - central tendency
@@ -63,3 +65,11 @@
   - probability = frequency / sample size
 
   - normalization: the process of dividing frequency by sample size to get probability
+
+    - results are normalized when all probabilities add up to 1
+
+  - probability mass function (PMF)
+
+    - advantageous over histogram when comparing two distributions
+
+    - allows us not to be mislead by the sample size
