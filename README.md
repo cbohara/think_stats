@@ -20,13 +20,11 @@
 
   - the values that appear in the sample and the frequency of each
 
-  - normal distribution
+  - frequency: the number of times a value appears in the sample
 
-    - idealized bell-shape distribution aka Gaussian distribution
+  - normal distribution: idealized bell-shape aka Gaussian distribution
 
-  - uniform distribution
-
-    - a distribution in which all values have the same frequency
+  - uniform distribution: all values have the same frequency
 
 ### summarizing distribution
 
@@ -34,7 +32,7 @@
 
     - do the values tend to cluster around a particular point?
 
-    - measured by the mean
+    - measured by mean
 
   - modes
 
@@ -62,4 +60,6 @@
 
 ### probability
 
-  - probability
+  - probability: frequency / sample size
+
+  - normalization: the process of dividing frequency by sample size to get probability
