@@ -34,7 +34,7 @@ def MakeHists(live):
     thinkplot.SubPlot(2)
     thinkplot.Pmf(hist)
 
-    thinkplot.Save(root='probability_agepreg_hist', 
+    thinkplot.Save(root='probability_agepreg_hist',
                    xlabel='years',
                    axis=[0, 45, 0, 700])
 
@@ -101,7 +101,7 @@ def BiasPmf(pmf, label=''):
 
     for x, p in pmf.Items():
         new_pmf.Mult(x, x)
-        
+
     new_pmf.Normalize()
     return new_pmf
 
@@ -120,7 +120,7 @@ def UnbiasPmf(pmf, label=''):
 
     for x, p in pmf.Items():
         new_pmf.Mult(x, 1.0/x)
-        
+
     new_pmf.Normalize()
     return new_pmf
 
@@ -129,14 +129,14 @@ def ClassSizes():
     """Generate PMFs of observed and actual class size.
     """
     # start with the actual distribution of class sizes from the book
-    d = { 7: 8, 12: 8, 17: 14, 22: 4, 
+    d = { 7: 8, 12: 8, 17: 14, 22: 4,
           27: 6, 32: 12, 37: 8, 42: 3, 47: 2 }
 
     # form the pmf
     pmf = thinkstats2.Pmf(d, label='actual')
     print('mean', pmf.Mean())
     print('var', pmf.Var())
-    
+
     # compute the biased pmf
     biased_pmf = BiasPmf(pmf, label='observed')
     print('mean', biased_pmf.Mean())
@@ -154,8 +154,8 @@ def ClassSizes():
                    xlabel='class size',
                    ylabel='PMF',
                    axis=[0, 52, 0, 0.27])
-    
- 
+
+
 def main(script):
     live, firsts, others = first.MakeFrames()
     MakeFigures(firsts, others)
@@ -167,5 +167,3 @@ def main(script):
 if __name__ == '__main__':
     import sys
     main(*sys.argv)
-
-
