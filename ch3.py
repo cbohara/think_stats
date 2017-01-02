@@ -60,6 +60,9 @@ def unbiased_pmf(pmf, label):
     new_pmf.Normalize()
     return new_pmf
 
+# def pmf_mean(pmf):
+
+
 def main(script):
     # read in data into dataframe
     preg = nsfg.ReadFemPreg()
@@ -74,13 +77,19 @@ def main(script):
     # split total live birth dataframe into first babies only dataframe
     firsts = live[live.birthord == 1]
     firsts_pmf = create_pmf(firsts)
+    print(firsts_pmf)
     # and all others
-    others = live[live.birthord != 1]
-    others_pmf = create_pmf(others)
+    # others = live[live.birthord != 1]
+    # others_pmf = create_pmf(others)
     # display graphs of probabilities
     # display(firsts_pmf, others_pmf)
     # zoom in around mode to get a better idea of data pattern
     # zoom_in_around_mode(firsts_pmf, others_pmf)
+
+    # given PMF, compute mean
+    pmf_mean(firsts_pmf)
+
+    # given PMF, compute variance
 
     # class size paradox
     # dictionary of avg class size: frequency of classes offered
@@ -93,13 +102,7 @@ def main(script):
     thinkplot.Pmfs([pmf, biased_pmf])
     # thinkplot.Show(xlabel='class size', ylabel='PMF')
 
-    # dataframe
-    array = np.random.randn(4, 2)
-    df = pd.DataFrame(array, index=['a', 'b', 'c', 'd'], columns=['A', 'B'])
-    print(df)
-    # simple indexing selects a column and returns a series
-    print(df['A'])
-    # use .loc to select a 
+
 
 if __name__ == '__main__':
     import sys
