@@ -7,10 +7,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
 from __future__ import print_function
 
-import math
 import numpy as np
-
-import nsfg
 import first
 import thinkstats2
 import thinkplot
@@ -129,8 +126,8 @@ def ClassSizes():
     """Generate PMFs of observed and actual class size.
     """
     # start with the actual distribution of class sizes from the book
-    d = { 7: 8, 12: 8, 17: 14, 22: 4,
-          27: 6, 32: 12, 37: 8, 42: 3, 47: 2 }
+    d = {7: 8, 12: 8, 17: 14, 22: 4,
+         27: 6, 32: 12, 37: 8, 42: 3, 47: 2}
 
     # form the pmf
     pmf = thinkstats2.Pmf(d, label='actual')
