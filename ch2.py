@@ -1,10 +1,8 @@
-import math
-import numpy as np
-import pandas as pd
 import thinkstats2
 import thinkplot
 import nsfg
-import first
+import math
+
 
 def basic_hist(df):
     # create a histogram of number of weeks of pregnancy
@@ -12,6 +10,7 @@ def basic_hist(df):
     # display histogram
     thinkplot.Hist(hist)
     thinkplot.Show(xlabel='weeks', ylabel='frequency')
+
 
 def outliers(df):
     # create a histogram of number of weeks of pregnancy
@@ -31,6 +30,7 @@ def outliers(df):
     print("Largest outliers:")
     print(sorted(largest))
 
+
 def comparison_hist(df1, df2):
     # create histograms
     firsts_hist = thinkstats2.Hist(df1.prglngth)
@@ -42,7 +42,8 @@ def comparison_hist(df1, df2):
     thinkplot.Hist(others_hist, align='left', width=0.45)
 
     # display histogram focusing on pregnancies between 27 and 46 weeks
-    thinkplot.Show(xlabel='weeks', ylabel='frequency', xlim=[27,46])
+    thinkplot.Show(xlabel='weeks', ylabel='frequency', xlim=[27, 46])
+
 
 def summary_statistics(df1):
     # uses pandas to calc mean
@@ -61,9 +62,9 @@ def summary_statistics(df1):
     std = df1.prglngth.std()
     print("Standard deviation: " + str(std))
 
-def cohen_effect_size(df1, df2):
-    # cohen effect size = difference between two groups / "pooled standard deviation"
 
+def cohen_effect_size(df1, df2):
+    # difference between two groups / "pooled standard deviation"
     # calculate difference between means of the two groups
     diff = df1.prglngth.mean() - df2.prglngth.mean()
 
@@ -81,6 +82,7 @@ def cohen_effect_size(df1, df2):
     d = diff / math.sqrt(pooled)
     print("Cohen Effect Size: " + str(d))
     return d
+
 
 def main(script):
     # read in data into dataframe
@@ -109,6 +111,7 @@ def main(script):
 
     # calculate cohen effect size
     cohen_effect_size(firsts, others)
+
 
 if __name__ == '__main__':
     import sys
