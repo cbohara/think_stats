@@ -68,8 +68,37 @@ def pmf_variance(pmf):
     variance = 0.0
     for x, p in pmf.Items():
         variance += p * (x - mean) ** 2
-    print(variance)
     return variance
+
+def compare_to_first_birth(series):
+    first = series[0]
+    subsequent = series[1:]
+    difference = [first - x for x in subsequent]
+    return difference
+
+def compare_births(df):
+    # returns dictionary with caseid as key and list of preg df index per birth as value
+    caseid_dict = nsfg.MakePregMap(df)
+
+    # list will store the difference in pregnancy length between births for each woman
+    diffs = []
+    for caseid, indices in caseid_dict.items():
+        # returns a panda series containing the pregnancy lengths for the specific caseid woman
+        lengths = df.loc[indices].prglngth.values
+        # if the woman has had more than one birth
+        if len(lengths) >= 2:
+            # calculate the difference between the preg length of the first birth to each of the subsequent births
+            diffs.extend(compare_to_first_birth(lengths))
+
+    # create and display PMF
+    pmf = thinkstats2.Pmf(diffs)
+    thinkplot.Hist(pmf, align='center')
+    thinkplot.Show(xlabel='Difference in weeks', ylabel='PMF')
+
+    # calculate the mean (difference between pregnancy length from one child to the next per woman)
+    mean = thinkstats2.Mean(diffs)
+    return mean
+
 
 def main(script):
     # read in data into dataframe
@@ -81,6 +110,8 @@ def main(script):
     live_hist = create_hist(live)
     # create basic dictionary of probabilities
     total_prob = prob_dict(live_hist)
+    # compare difference between first babies and others for the same woman
+    compare_births(live)
 
     # split total live birth dataframe into first babies only dataframe
     firsts = live[live.birthord == 1]
@@ -90,9 +121,9 @@ def main(script):
     others_pmf = create_pmf(others)
 
     # display graphs of probabilities
-    # display(firsts_pmf, others_pmf)
-    # # zoom in around mode to get a better idea of data pattern
-    # zoom_in_around_mode(firsts_pmf, others_pmf)
+    display(firsts_pmf, others_pmf)
+    # zoom in around mode to get a better idea of data pattern
+    zoom_in_around_mode(firsts_pmf, others_pmf)
 
     # given PMF, compute mean
     pmf_mean(firsts_pmf)
@@ -106,9 +137,9 @@ def main(script):
     pmf = thinkstats2.Pmf(d, label='actual')
     # observe biased distribution
     biased_pmf = bias_pmf(pmf, label='observed')
-    # thinkplot.PrePlot(2)
-    # thinkplot.Pmfs([pmf, biased_pmf])
-    # thinkplot.Show(xlabel='class size', ylabel='PMF')
+    thinkplot.PrePlot(2)
+    thinkplot.Pmfs([pmf, biased_pmf])
+    thinkplot.Show(xlabel='class size', ylabel='PMF')
 
 if __name__ == '__main__':
     import sys
