@@ -8,10 +8,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 from __future__ import print_function, division
 
 import numpy as np
-
-import nsfg
 import first
-
 import thinkstats2
 import thinkplot
 
@@ -52,7 +49,7 @@ def Percentile2(scores, percentile_rank):
 
 print('prank, score, score')
 for percentile_rank in [0, 20, 25, 40, 50, 60, 75, 80, 100]:
-    print(percentile_rank, 
+    print(percentile_rank,
           Percentile(scores, percentile_rank),
           Percentile2(scores, percentile_rank))
 
@@ -124,7 +121,7 @@ def MakeExample():
                    xlabel='x',
                    ylabel='CDF',
                    axis=[0, 6, 0, 1],
-                   legend=False)    
+                   legend=False)
 
 
 def MakeFigures(live, firsts, others):
@@ -139,7 +136,7 @@ def MakeFigures(live, firsts, others):
     first_wgt_dropna = first_wgt.dropna()
     print('Firsts', len(first_wgt), len(first_wgt_dropna))
     #assert len(first_wgt_dropna) == 4381
- 
+
     other_wgt = others.totalwgt_lb
     other_wgt_dropna = other_wgt.dropna()
     print('Others', len(other_wgt), len(other_wgt_dropna))
@@ -175,7 +172,7 @@ def MakeFigures(live, firsts, others):
 
 def MakeCdf(live):
     """Plot the CDF of pregnancy lengths for live births.
-   
+
     live: DataFrame for live births
     """
     cdf = thinkstats2.Cdf(live.prglngth, label='prglngth')

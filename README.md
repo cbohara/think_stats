@@ -94,3 +94,37 @@
     - df['a':'c']
 
     - df[0:2]
+
+## Chapter 4
+
+### limits of PMFs
+
+  - hard to compare visually
+
+  - as the number of values increases
+
+    - the probability associated with each value gets smaller
+
+    - the effect of random noise increases
+
+  - these problems can be mitigated with binning the data
+
+    - dividing the range of values into non-overlapping intervals
+
+    - counting the number of values in each bin
+
+  - can be tricky getting the size of the bins right
+
+    - they can smooth out noise if there are enough in the bin
+
+    - but they can also smooth out useful info
+
+### percentiles
+
+  - test score example
+
+    - fraction of the people who scored lower than you (or the same)
+
+    - in the 90th percentile = you did as well or better than 90% of the test takers
+
+    
