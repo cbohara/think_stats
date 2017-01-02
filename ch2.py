@@ -1,4 +1,10 @@
-import nsfg, first, thinkstats2, thinkplot, math
+import math
+import numpy as np
+import pandas as pd
+import thinkstats2
+import thinkplot
+import nsfg
+import first
 
 def basic_hist(df):
     # create a histogram of number of weeks of pregnancy
@@ -85,7 +91,7 @@ def main(script):
     live = preg[preg.outcome == 1]
 
     # display histogram
-    # basic_hist(live)
+    basic_hist(live)
 
     # print pregnancy length outliers
     outliers(live)
@@ -99,7 +105,7 @@ def main(script):
     others = live[live.birthord != 1]
 
     # plot both these dataframes in one histogram graph
-    # comparison_hist(firsts, others)
+    comparison_hist(firsts, others)
 
     # calculate cohen effect size
     cohen_effect_size(firsts, others)

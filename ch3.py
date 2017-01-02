@@ -1,5 +1,10 @@
-import math, numpy as np, pandas as pd
-import thinkstats2, thinkplot, nsfg, first, probability
+import numpy as np
+import pandas as pd
+import thinkstats2
+import thinkplot
+import nsfg
+import first
+import probability
 
 def create_hist(df):
     # create a histogram of number of weeks of pregnancy
