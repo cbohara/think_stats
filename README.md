@@ -65,9 +65,9 @@
 
   - probability mass function (PMF)
 
-    - advantageous over histogram when comparing two distributions
+    - a representation of a distribution as a function that maps from values to probabilities
 
-    - allows us not to be mislead by the sample size
+    - advantageous over histogram when comparing two distributions because not mislead by the sample size
 
 ### pandas
 

@@ -36,7 +36,6 @@ def zoom_in_around_mode(pmf1, pmf2):
         p2 = pmf2.Prob(week)
         diff = 100 * (p1 - p2)
         diffs.append(diff)
-
     thinkplot.Bar(weeks, diffs)
     return thinkplot.Show(xlabel='weeks', ylabel='difference in probability')
 
@@ -46,7 +45,6 @@ def bias_pmf(pmf, label):
     for x, p in pmf.Items():
         # multiply the probability by the number of students who observe the class size
         new_pmf.Mult(x, x)
-
     new_pmf.Normalize()
     return new_pmf
 
@@ -56,12 +54,18 @@ def unbiased_pmf(pmf, label):
     for x, p in pmf.Items():
         # divides each probability by the number of students who observe the class size
         new_pmf.Mult(x, 1.0/x)
-
     new_pmf.Normalize()
     return new_pmf
 
-# def pmf_mean(pmf):
+def pmf_mean(pmf):
+    mean = 0
+    # sum of probability * value
+    for x, p in pmf.Items():
+        mean += x * p
+    return mean
 
+def pmf_variance(pmf):
+    
 
 def main(script):
     # read in data into dataframe
@@ -77,19 +81,19 @@ def main(script):
     # split total live birth dataframe into first babies only dataframe
     firsts = live[live.birthord == 1]
     firsts_pmf = create_pmf(firsts)
-    print(firsts_pmf)
     # and all others
-    # others = live[live.birthord != 1]
-    # others_pmf = create_pmf(others)
+    others = live[live.birthord != 1]
+    others_pmf = create_pmf(others)
+
     # display graphs of probabilities
-    # display(firsts_pmf, others_pmf)
+    display(firsts_pmf, others_pmf)
     # zoom in around mode to get a better idea of data pattern
-    # zoom_in_around_mode(firsts_pmf, others_pmf)
+    zoom_in_around_mode(firsts_pmf, others_pmf)
 
     # given PMF, compute mean
     pmf_mean(firsts_pmf)
-
     # given PMF, compute variance
+    pmf_variance(firsts_pmf)
 
     # class size paradox
     # dictionary of avg class size: frequency of classes offered
@@ -98,11 +102,9 @@ def main(script):
     pmf = thinkstats2.Pmf(d, label='actual')
     # observe biased distribution
     biased_pmf = bias_pmf(pmf, label='observed')
-    thinkplot.PrePlot(2)
-    thinkplot.Pmfs([pmf, biased_pmf])
+    # thinkplot.PrePlot(2)
+    # thinkplot.Pmfs([pmf, biased_pmf])
     # thinkplot.Show(xlabel='class size', ylabel='PMF')
-
-
 
 if __name__ == '__main__':
     import sys
