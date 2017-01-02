@@ -58,14 +58,18 @@ def unbiased_pmf(pmf, label):
     return new_pmf
 
 def pmf_mean(pmf):
-    mean = 0
-    # sum of probability * value
+    mean = 0.0
     for x, p in pmf.Items():
         mean += x * p
     return mean
 
 def pmf_variance(pmf):
-    
+    mean = pmf_mean(pmf)
+    variance = 0.0
+    for x, p in pmf.Items():
+        variance += p * (x - mean) ** 2
+    print(variance)
+    return variance
 
 def main(script):
     # read in data into dataframe
@@ -86,16 +90,16 @@ def main(script):
     others_pmf = create_pmf(others)
 
     # display graphs of probabilities
-    display(firsts_pmf, others_pmf)
-    # zoom in around mode to get a better idea of data pattern
-    zoom_in_around_mode(firsts_pmf, others_pmf)
+    # display(firsts_pmf, others_pmf)
+    # # zoom in around mode to get a better idea of data pattern
+    # zoom_in_around_mode(firsts_pmf, others_pmf)
 
     # given PMF, compute mean
     pmf_mean(firsts_pmf)
     # given PMF, compute variance
     pmf_variance(firsts_pmf)
 
-    # class size paradox
+    # unrelated example - class size paradox
     # dictionary of avg class size: frequency of classes offered
     d = {7: 8, 12: 8, 17: 14, 22: 4, 27: 6, 32: 12, 37: 8, 42: 3, 47: 2}
     # create pmf
