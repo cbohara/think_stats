@@ -127,4 +127,7 @@
 
     - in the 90th percentile = you did as well or better than 90% of the test takers
 
-    
+  - percentile rank = the percentage of values in a distribution that are less than
+  or equal to a given value
+
+  - percentile = the value associated with a given percentile rank
