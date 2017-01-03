@@ -197,7 +197,3 @@
     - choose random x percentile rank from range 0-100
 
     - use Cdf.Percentile to find the value of x
-
-### comparing percentile ranks
-
-  - useful for comparing measurements across different groups
