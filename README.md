@@ -149,3 +149,39 @@
 
       - to evaluate, compute the fraction of values in the distribution less than
       or equal to x
+
+  - Cdf.PercentileRank(x)
+
+    - compute percentile rank of x
+
+    - 100 * CDF(x)
+
+  - Cdf.Percentile(p)
+
+    - given percentile rank p, compute value of x
+
+    - Value(p/100)
+
+### percentile-based summary statistics
+
+  - median
+
+    - 50th percentile that divides the distribution in half
+
+    - measure of the central tendency of the distribution
+
+  - interquartile range (IQR)
+
+    - difference between the 75th and 25th percentiles
+
+    - measure of the spread of the distribution
+
+  - quantiles
+
+    - represent equally spaced points in the CDF
+
+    - ex: quintiles
+
+      - income is often split between 20th, 40th, 60th, and 80th percentiles
+
+### random numbers
