@@ -38,11 +38,14 @@ def eval_cdf(sample, x):
 
 
 def position_to_percentile(position, field_size):
+    """ Given position completed race, determine percentile rank."""
     beat = field_size - position + 1
     percentile = 100.0 * beat / field_size
     return percentile
 
+
 def percentile_to_position(percentile, field_size):
+    """ Given percentile rank, determine position in race."""
     beat = percentile * field_size / 100.0
     position = field_size - beat + 1
     return position
@@ -87,7 +90,15 @@ def main(script):
     # generate random values with a given CDF
     thinkstats2.Cdf.Random(rank_cdf)
 
-
+    # find my percentile rank in the distribution
+    other_weights = others.totalwgt_lb
+    other_cdf = thinkstats2.Cdf(others.totalwgt_lb, label='totalwgt_lb')
+    # generate random sample
+    other_sample = np.random.choice(other_weights, 100, replace=True)
+    # compute percentile rank of each value in sample and populate ranks list
+    other_ranks = [cdf.PercentileRank(x) for x in other_sample]
+    # determine percentile rank for my birth weight
+    percentile_rank(other_ranks, 8)
 
 
 if __name__ == '__main__':
