@@ -63,9 +63,11 @@
 
     - results are normalized when all probabilities add up to 1
 
-  - probability mass function (PMF)
+### probability mass function (PMF)
 
-    - a representation of a distribution as a function that maps from values to probabilities
+    - a representation of a distribution as a function
+
+    - maps from values to probabilities
 
     - advantageous over histogram when comparing two distributions because not mislead by the sample size
 
@@ -197,3 +199,36 @@
     - choose random x percentile rank from range 0-100
 
     - use Cdf.Percentile to find the value of x
+
+## Chapter 5
+
+### analytic distributions
+
+  - empirical distributions
+
+    - what we've been looking at so far
+
+    - distribution of values in a sample
+
+    - based on empirical observation
+
+  - analytic distributions
+
+    - described by cumulative distribution function (CDF)
+
+    - can be used to model empirical distributions
+
+  - model
+
+    - simplification that leaves out unneeded details
+
+#### exponential distribution
+
+  - used when we look at a series of events and measure the times between events = interarrival times
+
+    - if the events are equally likely to occur at any time, then the distribution of
+    interarrival times tends to look like an exponential distribution
+
+  - CDF(x) = 1 - e ** (-ƛ * x)
+
+    - lambda ƛ determines the shape of the distribution
