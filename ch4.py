@@ -4,6 +4,7 @@ import thinkstats2
 import thinkplot
 import nsfg
 import first
+import numpy as np
 
 
 def percentile_rank(scores, your_score):
@@ -36,6 +37,17 @@ def eval_cdf(sample, x):
     return probability
 
 
+def position_to_percentile(position, field_size):
+    beat = field_size - position + 1
+    percentile = 100.0 * beat / field_size
+    return percentile
+
+def percentile_to_position(percentile, field_size):
+    beat = percentile * field_size / 100.0
+    position = field_size - beat + 1
+    return position
+
+
 def main(script):
     scores = [55, 66, 77, 88, 99]
     your_score = 88
@@ -66,8 +78,16 @@ def main(script):
     cdf = thinkstats2.Cdf(weights, label='totalwgt_lb')
     # generate random sample
     sample = np.random.choice(weights, 100, replace=True)
-    # compute percentile rank of each value in sample
+    # compute percentile rank of each value in sample and populate ranks list
     ranks = [cdf.PercentileRank(x) for x in sample]
+    # plot CDF of percentile ranks for a random sample of birth weights
+    rank_cdf = thinkstats2.Cdf(ranks)
+    thinkplot.Cdf(rank_cdf)
+    # thinkplot.Show(xlabel='percentile rank', ylabel='CDF')
+    # generate random values with a given CDF
+    thinkstats2.Cdf.Random(rank_cdf)
+
+
 
 
 if __name__ == '__main__':

@@ -186,4 +186,18 @@
 
 ### random numbers
 
-  - replacement = same value could be chosen more than once
+  - replacement = a property of the sampling process
+
+    - with replacement = same value can be chosen more than once
+
+    - without replacement = once value is chosen, it must be removed from population
+
+  - simple and efficient algorithm for generating random numbers with CDF
+
+    - choose random x percentile rank from range 0-100
+
+    - use Cdf.Percentile to find the value of x
+
+### comparing percentile ranks
+
+  - useful for comparing measurements across different groups
