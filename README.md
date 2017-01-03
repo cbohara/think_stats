@@ -224,7 +224,9 @@
 
 #### exponential distribution
 
-  - used when we look at a series of events and measure the times between events = interarrival times
+  - used when we look at a series of events
+
+  - interarrival times = measure the times between events
 
     - if the events are equally likely to occur at any time, then the distribution of
     interarrival times tends to look like an exponential distribution
@@ -232,3 +234,18 @@
   - CDF(x) = 1 - e ** (-ƛ * x)
 
     - lambda ƛ determines the shape of the distribution
+
+  - ensure distribution is exponential by plotting the complementary CDF (1 - CDF(x))
+  on a log-y scale
+
+    - if distribution is exponential, complementary CDF (CCDF) will be a straight line
+
+    - CCDF(x) ~  e ** (-ƛ * x)
+
+    - log y ~  -ƛ * x
+
+      - straight line with slope -ƛ
+
+  - lambda ƛ = rate = number of events that occur on average/unit of time
+
+  - exponential distribution = 1/ƛ
