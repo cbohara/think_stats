@@ -127,7 +127,25 @@
 
     - in the 90th percentile = you did as well or better than 90% of the test takers
 
+  - percentile = the value associated with a given percentile rank
+
   - percentile rank = the percentage of values in a distribution that are less than
   or equal to a given value
 
-  - percentile = the value associated with a given percentile rank
+
+### cumulative distribution function (CDF)
+
+  - CDF = function that maps from a value to its percentile rank
+
+    - CDF(x)
+
+      - x is any value within the distribution
+
+      - doesn't necessarily have to be in the sample
+
+        - if x is less than the smallest value in the sample, CDF(x) = 0
+
+        - if x is greater than the largest value in the sample, CDF(x) = 1
+
+      - to evaluate, compute the fraction of values in the distribution less than
+      or equal to x
