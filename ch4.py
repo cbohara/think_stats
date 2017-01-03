@@ -61,6 +61,14 @@ def main(script):
     thinkplot.Cdfs([first_cdf, other_cdf])
     # thinkplot.Show(xlabel='weight(lbs)', ylabel='CDF')
 
+    # calculate percentile rank of birth weights
+    weights = live.totalwgt_lb
+    cdf = thinkstats2.Cdf(weights, label='totalwgt_lb')
+    # generate random sample
+    sample = np.random.choice(weights, 100, replace=True)
+    # compute percentile rank of each value in sample
+    ranks = [cdf.PercentileRank(x) for x in sample]
+
 
 if __name__ == '__main__':
     import sys

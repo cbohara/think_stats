@@ -185,3 +185,5 @@
       - income is often split between 20th, 40th, 60th, and 80th percentiles
 
 ### random numbers
+
+  - replacement = same value could be chosen more than once
