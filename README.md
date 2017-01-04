@@ -222,7 +222,7 @@
 
     - simplification that leaves out unneeded details
 
-#### exponential distribution
+### exponential distribution
 
   - used when we look at a series of events
 
@@ -249,3 +249,52 @@
   - lambda ƛ = rate = number of events that occur on average/unit of time
 
   - exponential distribution = 1/ƛ
+
+### normal distribution (Gaussian)
+
+  - characterized by two parameters
+
+    - mean
+
+    - standard deviation
+
+  - scipy.stats.norm is an object that represents a normal distribution
+
+  - standard normal distribution
+
+    - mean = 0
+
+      - mean = median
+
+    - standard deviation = 1
+
+    - scipy.stats.norm.cdf() evaluates the standard normal CDF
+
+      - optional parameters
+
+        - loc specifies the mean
+
+        - scale specifies standard deviation
+
+    - scipy.stats.norm.cdf(0) = 0.5
+
+      - median at zero
+
+      - half the values fall below the median
+
+### normal probability plot
+
+  - often we want to determine whether the model is appropriate for the dataset
+
+    - straightforward with exponential distribution
+
+      - if the CCDF is a straight line, then exponential distribution fits
+
+    - not as definitive but best solution = use normal probability plot for normal distribution
+
+      - sort the values in the sample
+
+      - from the standard normal distribution (mean = 0 and SD = 1), generate a random
+      sample with the same size as the sample, and sort it
+
+      - plot the sorted values from the sample vs. random values

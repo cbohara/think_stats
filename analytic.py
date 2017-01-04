@@ -30,13 +30,13 @@ def MakeExpoCdf():
         xs, ps = thinkstats2.RenderExpoCdf(lam, 0, 3.0, 50)
         label = r'$\lambda=%g$' % lam
         thinkplot.Plot(xs, ps, label=label)
-    
+
     thinkplot.Save(root='analytic_expo_cdf',
                    title='Exponential CDF',
                    xlabel='x',
                    ylabel='CDF')
 
-    
+
 def ReadBabyBoom(filename='babyboom.dat'):
     """Reads the babyboom data.
 
@@ -90,20 +90,20 @@ def MakeParetoCdf():
 
     thinkplot.PrePlot(3)
     for alpha in [2.0, 1.0, 0.5]:
-        xs, ps = thinkstats2.RenderParetoCdf(xmin, alpha, 0, 10.0, n=100) 
+        xs, ps = thinkstats2.RenderParetoCdf(xmin, alpha, 0, 10.0, n=100)
         thinkplot.Plot(xs, ps, label=r'$\alpha=%g$' % alpha)
-    
+
     thinkplot.Save(root='analytic_pareto_cdf',
                    title='Pareto CDF',
                    xlabel='x',
                    ylabel='CDF')
-    
+
 
 def MakeParetoCdf2():
     """Generates a plot of the CDF of height in Pareto World."""
     xmin = 100
-    alpha = 1.7    
-    xs, ps = thinkstats2.RenderParetoCdf(xmin, alpha, 0, 1000.0, n=100) 
+    alpha = 1.7
+    xs, ps = thinkstats2.RenderParetoCdf(xmin, alpha, 0, 1000.0, n=100)
     thinkplot.Plot(xs, ps)
 
     thinkplot.Save(root='analytic_pareto_height',
@@ -111,17 +111,17 @@ def MakeParetoCdf2():
                    xlabel='height (cm)',
                    ylabel='CDF',
                    legend=False)
-    
+
 
 def MakeNormalCdf():
     """Generates a plot of the normal CDF."""
-    
+
     thinkplot.PrePlot(3)
 
     mus = [1.0, 2.0, 3.0]
     sigmas = [0.5, 0.4, 0.3]
     for mu, sigma in zip(mus, sigmas):
-        xs, ps = thinkstats2.RenderNormalCdf(mu=mu, sigma=sigma, 
+        xs, ps = thinkstats2.RenderNormalCdf(mu=mu, sigma=sigma,
                                                low=-1.0, high=4.0)
         label = r'$\mu=%g$, $\sigma=%g$' % (mu, sigma)
         thinkplot.Plot(xs, ps, label=label)
@@ -131,15 +131,15 @@ def MakeNormalCdf():
                    xlabel='x',
                    ylabel='CDF',
                    loc=2)
-    
-    
+
+
 def MakeNormalModel(weights):
     """Plot the CDF of birthweights with a normal model."""
-    
+
     # estimate parameters: trimming outliers yields a better fit
     mu, var = thinkstats2.TrimmedMeanVar(weights, p=0.01)
     print('Mean, Var', mu, var)
-    
+
     # plot the model
     sigma = math.sqrt(var)
     print('Sigma', sigma)
@@ -151,7 +151,7 @@ def MakeNormalModel(weights):
     cdf = thinkstats2.Cdf(weights, label='data')
 
     thinkplot.PrePlot(1)
-    thinkplot.Cdf(cdf) 
+    thinkplot.Cdf(cdf)
     thinkplot.Save(root='analytic_birthwgt_model',
                    title='Birth weights',
                    xlabel='birth weight (lbs)',
@@ -162,7 +162,7 @@ def MakeExampleNormalPlot():
     """Generates a sample normal probability plot.
     """
     n = 1000
-    thinkplot.PrePlot(3) 
+    thinkplot.PrePlot(3)
 
     mus = [0, 1, 5]
     sigmas = [1, 1, 2]
@@ -188,7 +188,7 @@ def MakeNormalPlot(weights, term_weights):
     fxs, fys = thinkstats2.FitLine(xs, mean, std)
     thinkplot.Plot(fxs, fys, linewidth=4, color='0.8')
 
-    thinkplot.PrePlot(2) 
+    thinkplot.PrePlot(2)
     xs, ys = thinkstats2.NormalProbability(weights)
     thinkplot.Plot(xs, ys, label='all live')
 
@@ -212,7 +212,7 @@ def main():
     MakeParetoCdf2()
     MakeNormalCdf()
 
-    # test the distribution of birth weights for normality
+    # test the distributionl of birth weights for normality
     preg = nsfg.ReadFemPreg()
     full_term = preg[preg.prglngth >= 37]
 
@@ -222,6 +222,6 @@ def main():
     MakeNormalModel(weights)
     MakeNormalPlot(weights, term_weights)
 
-    
+
 if __name__ == "__main__":
     main()
