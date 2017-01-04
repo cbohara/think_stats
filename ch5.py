@@ -3,6 +3,7 @@
 import scipy.stats
 import thinkstats2
 import thinkplot
+import nsfg
 import analytic
 
 
@@ -11,26 +12,36 @@ def eval_normal_cdf(x, mu=0, sigma=1):
     return scipy.stats.norm.cdf(x, loc=mu, scale=sigma)
 
 
-def make_normal_plot(weights):
+def make_normal_plot(weights, term_weights):
     """Generate normal probability plot from birthweight data."""
+    # calculate mean and standard deviation for weight series
     mean = weights.mean()
     std = weights.std()
-    # plot from -4 to 4 standard deviations from the mean
-    xs = [-4, 4]
-    # FitLine to given data, returns tuple of numpy array
-    fxs, fys = thinkstats2.FitLine(xs, inter=mean, slope=std)
-    thinkplot.Plot(fxs, fys, color='gray', label='model')
 
+    xs = [-4, 4]
+    # FitLine takes a sequence of xs, an intercept, and slope
+    # returns fxs and fys = represents a line with the given parameters, evaluated at xs
+    fxs, fys = thinkstats2.FitLine(xs, mean, std)
+    thinkplot.Plot(fxs, fys, linewidth=4, color='0.8')
+
+    thinkplot.PrePlot(2)
+    # NormalProbability generates data for normal probability plot
+    # returns numpy arrays xs and ys
     xs, ys = thinkstats2.NormalProbability(weights)
-    thinkplot.Plot(xs, ys, label='birth weights')
-    thinkplot.Show(xaxis='adult weight', yaxis='CDF')
+    thinkplot.Plot(xs, ys, label='all live')
+
+    xs, ys = thinkstats2.NormalProbability(term_weights)
+    thinkplot.Plot(xs, ys, label='full term')
+    thinkplot.Show(root='analytic_birthwgt_normal',
+                   title='Normal probability plot',
+                   xlabel='Standard deviations from mean',
+                   ylabel='Birth weight (lbs)')
 
 
 def main(script):
     # read in data about the births of 44 kids on the same day from babyboom.dat
     # df with columns for time, sex, weight_g, and minutes (since midnight)
     df = analytic.ReadBabyBoom()
-
     # exponential distribution
     # difference between consecutive birth times
     diffs = df.minutes.diff()
@@ -44,16 +55,12 @@ def main(script):
     # thinkplot.Show(xlabel='minutes', ylabel='CCDF', yscale='log')
 
     # standard normal distribution
-    standard_normal = eval_normal_cdf(0)
-    # test to determine if normal distribution is an appropriate model
-    # NormalProbability() returns 2 numpy arrays
-    # xs contains random values from the standard normal distribution
-    # ys contains sorted values from the sample
-    # xs, ys = thinkstats2.NormalProbability(sample)
-
-    weights = df['weight_g']
-    # generates standard normal plot
-    make_normal_plot(weights)
+    # test the distribution of birth weights for normality
+    preg = nsfg.ReadFemPreg()
+    full_term = preg[preg.prglngth >= 37]
+    weights = preg.totalwgt_lb.dropna()
+    term_weights = full_term.totalwgt_lb.dropna()
+    make_normal_plot(weights, term_weights)
 
 
 if __name__ == '__main__':
