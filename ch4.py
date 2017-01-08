@@ -2,7 +2,6 @@
 
 import thinkstats2
 import thinkplot
-import nsfg
 import first
 import numpy as np
 

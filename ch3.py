@@ -122,8 +122,6 @@ def main(script):
     live = preg[preg.outcome == 1]
     # create histogram
     live_hist = create_hist(live)
-    # create basic dictionary of probabilities
-    total_prob = prob_dict(live_hist)
     # compare difference between first babies and others for the same woman
     compare_births(live)
 
