@@ -298,3 +298,5 @@
       sample with the same size as the sample, and sort it
 
       - plot the sorted values from the sample vs. random values
+
+### lognormal distribution
